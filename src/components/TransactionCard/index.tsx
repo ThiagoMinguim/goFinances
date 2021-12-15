@@ -1,20 +1,38 @@
 import React from 'react'
-import { Footer } from '../HighlightCard/styles'
 
 import * as S from './styles'
 
-export function TransactionCard() {
+interface CategoryProps {
+  name: string
+  icon: string
+}
+export interface TransactionCardProps {
+  type: 'positive' | 'negative'
+  title: string
+  amount: string
+  category: CategoryProps
+  date: string
+}
+
+interface Props {
+  data: TransactionCardProps
+}
+
+export function TransactionCard({ data }: Props) {
   return (
     <S.Container>
-      <S.Title>Desenvolvimento de site</S.Title>
-      <S.Amount>R$ 1.000,00</S.Amount>
-
+      <S.Title>{data.title}</S.Title>
+      <S.Amount type={data.type}>
+        {data.type === 'negative' && '- '}
+        {data.amount}
+      </S.Amount>
       <S.Footer>
         <S.Category>
-          <S.Icon name="dollar-sign" />
-          <S.CategoryName>Vendas</S.CategoryName>
+          <S.Icon name={data.category.icon} />
+          <S.CategoryName>{data.category.name}</S.CategoryName>
         </S.Category>
-        <S.Date>10/10/10</S.Date>
+
+        <S.Date>{data.date}</S.Date>
       </S.Footer>
     </S.Container>
   )
