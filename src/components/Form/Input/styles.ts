@@ -5,7 +5,7 @@ import { TextInput } from 'react-native'
 
 export const Container = styled(TextInput)`
   width: 100%;
-  padding: 18px 16px;
+  padding: 16px 16px;
 
   font-family: ${props => props.theme.fonts.regular};
   font-size: ${RFValue(14)}px;
