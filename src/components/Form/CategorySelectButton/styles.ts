@@ -18,7 +18,7 @@ export const Category = styled.Text`
   font-family: ${props => props.theme.fonts.regular};
   font-size: ${RFValue(14)}px;
 
-  color: ${props => props.theme.colors.text};
+  color: ${props => props.theme.colors.text_dark};
 `
 
 export const Icon = styled(Feather)`
