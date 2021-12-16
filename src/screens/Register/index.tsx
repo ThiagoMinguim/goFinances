@@ -45,13 +45,13 @@ export function Register() {
           <S.TransactionsTypes>
             <TransactionTypeButton
               type="up"
-              title="income"
+              title="Entrada"
               onPress={() => handleTransactionsTypeSelect('up')}
               isActive={TransactionType === 'up'}
             />
             <TransactionTypeButton
               type="down"
-              title="outcome"
+              title="Saída"
               onPress={() => handleTransactionsTypeSelect('down')}
               isActive={TransactionType === 'down'}
             />
