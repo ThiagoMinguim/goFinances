@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form'
 import { Modal } from 'react-native'
 
 import { Button } from '../../components/Form/Button'
-import { Input } from '../../components/Form/Input'
 import { CategorySelectButton } from '../../components/Form/CategorySelectButton'
 import { TransactionTypeButton } from '../../components/Form/TransactionTypeButton'
 
@@ -47,6 +46,7 @@ export function Register() {
       TransactionType,
       category: category.key
     }
+
     console.log(data)
   }
 
@@ -57,8 +57,19 @@ export function Register() {
       </S.Header>
       <S.Form>
         <S.Fields>
-          <InputForm control={control} name="name" placeholder="Nome" />
-          <InputForm control={control} name="amount" placeholder="Preço" />
+          <InputForm
+            control={control}
+            name="name"
+            placeholder="Nome"
+            autoCapitalize="sentences"
+            autoCorrect={false}
+          />
+          <InputForm
+            control={control}
+            name="amount"
+            placeholder="Preço"
+            keyboardType="numeric"
+          />
 
           <S.TransactionsTypes>
             <TransactionTypeButton
@@ -80,7 +91,7 @@ export function Register() {
             title={category.name}
           />
         </S.Fields>
-        <Button title="Enviar" onPress={() => handleSubmit(handleRegister)} />
+        <Button title="Enviar" onPress={handleSubmit(handleRegister)} />
         <Modal visible={categoryModalOpen} statusBarTranslucent>
           <CategorySelect
             category={category}
