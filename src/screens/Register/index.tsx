@@ -116,7 +116,7 @@ export function Register() {
               title={category.name}
             />
           </S.Fields>
-          <Button title="Enviar" onPress={handleSubmit(handleRegister)} />
+          <Button title="Enviar" onPress={() => handleSubmit(handleRegister)} />
           <Modal visible={categoryModalOpen} statusBarTranslucent>
             <CategorySelect
               category={category}
