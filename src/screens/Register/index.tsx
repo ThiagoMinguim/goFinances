@@ -35,7 +35,7 @@ const schema = Yup.object().shape({
 })
 
 export function Register() {
-  const [TransactionType, setTransactionType] = useState('')
+  const [transactionType, setTransactionType] = useState('')
   const [categoryModalOpen, setCategoryModalOpen] = useState(false)
 
   const [category, setCategory] = useState({
@@ -54,7 +54,7 @@ export function Register() {
     resolver: yupResolver(schema)
   })
 
-  function handleTransactionsTypeSelect(type: 'up' | 'down') {
+  function handleTransactionsTypeSelect(type: 'positive' | 'negative') {
     setTransactionType(type)
   }
 
@@ -67,7 +67,7 @@ export function Register() {
   }
 
   async function handleRegister(form: FormData) {
-    if (!TransactionType) return Alert.alert('Selecione o tipo da transação')
+    if (!transactionType) return Alert.alert('Selecione o tipo da transação')
 
     if (category.key === 'category')
       return Alert.alert('Selecione uma categoria')
@@ -76,7 +76,7 @@ export function Register() {
       id: String(uuid.v4()),
       name: form.name,
       amount: form.amount,
-      TransactionType,
+      type: transactionType,
       category: category.key,
       date: new Date()
     }
@@ -92,10 +92,9 @@ export function Register() {
       await AsyncStorage.setItem(dataKey, JSON.stringify(dataFormatted))
 
       reset()
+      navigate('Listagem')
       setTransactionType('')
       setCategory({ key: 'category', name: 'Categoria' })
-
-      navigate('Listagem')
     } catch (error) {
       console.log(error)
       Alert.alert('Erro ao cadastrar transação')
@@ -130,14 +129,14 @@ export function Register() {
               <TransactionTypeButton
                 type="up"
                 title="Entrada"
-                onPress={() => handleTransactionsTypeSelect('up')}
-                isActive={TransactionType === 'up'}
+                onPress={() => handleTransactionsTypeSelect('positive')}
+                isActive={transactionType === 'positive'}
               />
               <TransactionTypeButton
                 type="down"
                 title="Saída"
-                onPress={() => handleTransactionsTypeSelect('down')}
-                isActive={TransactionType === 'down'}
+                onPress={() => handleTransactionsTypeSelect('negative')}
+                isActive={transactionType === 'negative'}
               />
             </S.TransactionsTypes>
 
