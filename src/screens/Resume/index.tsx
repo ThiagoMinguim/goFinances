@@ -97,6 +97,18 @@ export function Resume() {
           paddingHorizontal: 24,
           paddingBottom: useBottomTabBarHeight()
         }}>
+        <S.MonthSelect>
+          <S.MonthSelectButton>
+            <S.SelectIcon name="chevron-left" />
+          </S.MonthSelectButton>
+
+          <S.Month>Maio</S.Month>
+
+          <S.MonthSelectButton>
+            <S.SelectIcon name="chevron-right" />
+          </S.MonthSelectButton>
+        </S.MonthSelect>
+
         <S.ChartContainer>
           <VictoryPie
             data={totalByCategories}
