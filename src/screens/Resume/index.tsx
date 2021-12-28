@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { VictoryPie } from 'victory-native'
 
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 import { useTheme } from 'styled-components'
 
 import { HistoryCard } from '../../components/HistoryCard'
@@ -90,7 +91,12 @@ export function Resume() {
         <S.Title>Resumo por categoria</S.Title>
       </S.Header>
 
-      <S.Content>
+      <S.Content
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{
+          paddingHorizontal: 24,
+          paddingBottom: useBottomTabBarHeight()
+        }}>
         <S.ChartContainer>
           <VictoryPie
             data={totalByCategories}
