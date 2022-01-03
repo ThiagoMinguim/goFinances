@@ -7,6 +7,8 @@ import AppLoading from 'expo-app-loading'
 import { ThemeProvider } from 'styled-components'
 import theme from './src/global/styles/theme'
 
+import { AuthContext } from './src/AuthContext'
+
 import {
   useFonts,
   Poppins_400Regular,
@@ -33,7 +35,10 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <NavigationContainer>
         <StatusBar barStyle="light-content" />
-        <SignIn />
+
+        <AuthContext.Provider value={[]}>
+          <SignIn />
+        </AuthContext.Provider>
       </NavigationContainer>
     </ThemeProvider>
   )
