@@ -1,4 +1,5 @@
-import React, { useContext } from 'react'
+import React from 'react'
+import { Alert } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 
 import AppleSvg from '../../assets/apple.svg'
@@ -11,8 +12,16 @@ import { SignInSocialButton } from '../../components/SignInSocialButton'
 import * as S from './styles'
 
 export function SignIn() {
-  const { user } = useAuth()
-  console.log(user)
+  const { signInWithGoogle } = useAuth()
+
+  async function handleSignInWithGoogle() {
+    try {
+      await signInWithGoogle()
+    } catch (error) {
+      console.log(error)
+      Alert.alert('Não foi possível fazer o login', 'Tente novamente')
+    }
+  }
 
   return (
     <S.Container>
@@ -33,7 +42,11 @@ export function SignIn() {
 
       <S.Footer>
         <S.FooterWrapper>
-          <SignInSocialButton title="Entrar com Google" svg={GoogleSvg} />
+          <SignInSocialButton
+            title="Entrar com Google"
+            svg={GoogleSvg}
+            onPress={signInWithGoogle}
+          />
           <SignInSocialButton title="Entrar com Apple" svg={AppleSvg} />
         </S.FooterWrapper>
       </S.Footer>
