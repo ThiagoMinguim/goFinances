@@ -27,7 +27,6 @@ export function SignIn() {
     } catch (error) {
       console.log(error)
       Alert.alert('Não foi possível fazer o login Tente novamente')
-    } finally {
       setIsLoading(false)
     }
   }
@@ -41,7 +40,6 @@ export function SignIn() {
       Alert.alert(
         'Não foi possível fazer o login Pela conta Apple, tente pelo Google'
       )
-    } finally {
       setIsLoading(false)
     }
   }
