@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ActivityIndicator, Alert } from 'react-native'
+import { ActivityIndicator, Alert, Platform } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 
 import { useTheme } from 'styled-components'
@@ -12,7 +12,6 @@ import { useAuth } from '../../hooks/auth'
 import { SignInSocialButton } from '../../components/SignInSocialButton'
 
 import * as S from './styles'
-import { is } from 'date-fns/locale'
 
 export function SignIn() {
   const [isLoading, setIsLoading] = useState(false)
@@ -27,6 +26,7 @@ export function SignIn() {
     } catch (error) {
       console.log(error)
       Alert.alert('Não foi possível fazer o login Tente novamente')
+    } finally {
       setIsLoading(false)
     }
   }
@@ -40,6 +40,7 @@ export function SignIn() {
       Alert.alert(
         'Não foi possível fazer o login Pela conta Apple, tente pelo Google'
       )
+    } finally {
       setIsLoading(false)
     }
   }
@@ -68,11 +69,13 @@ export function SignIn() {
             svg={GoogleSvg}
             onPress={handleSignInWithGoogle}
           />
-          <SignInSocialButton
-            title="Entrar com Apple"
-            svg={AppleSvg}
-            onPress={handleSignInWithApple}
-          />
+          {Platform.OS === 'ios' && (
+            <SignInSocialButton
+              title="Entrar com Apple"
+              svg={AppleSvg}
+              onPress={handleSignInWithApple}
+            />
+          )}
         </S.FooterWrapper>
 
         {isLoading && (
