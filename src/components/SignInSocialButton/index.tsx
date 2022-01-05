@@ -8,9 +8,14 @@ interface Props extends RectButtonProps {
   svg: React.FC<SvgProps>
 }
 
-export function SignInSocialButton({ title, svg: Svg, ...rest }: Props) {
+export function SignInSocialButton({
+  title,
+  svg: Svg,
+  onPress,
+  ...rest
+}: Props) {
   return (
-    <S.Button>
+    <S.Button onPress={onPress}>
       <S.ImageContainer>
         <Svg />
       </S.ImageContainer>
