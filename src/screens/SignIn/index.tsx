@@ -19,7 +19,7 @@ export function SignIn() {
       await signInWithGoogle()
     } catch (error) {
       console.log(error)
-      Alert.alert('Não foi possível fazer o login', 'Tente novamente')
+      Alert.alert('Não foi possível fazer o login Tente novamente')
     }
   }
 
@@ -45,7 +45,7 @@ export function SignIn() {
           <SignInSocialButton
             title="Entrar com Google"
             svg={GoogleSvg}
-            onPress={signInWithGoogle}
+            onPress={handleSignInWithGoogle}
           />
           <SignInSocialButton title="Entrar com Apple" svg={AppleSvg} />
         </S.FooterWrapper>
