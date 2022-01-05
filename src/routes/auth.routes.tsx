@@ -5,9 +5,9 @@ import { SignIn } from '../screens/SignIn'
 
 const { Navigator, Screen } = createStackNavigator()
 
-export function AuthRoutes(){
-  return(
-    <Navigator>
+export function AuthRoutes() {
+  return (
+    <Navigator screenOptions={{ headerShown: false }}>
       <Screen name="SignIn" component={SignIn} />
     </Navigator>
   )
